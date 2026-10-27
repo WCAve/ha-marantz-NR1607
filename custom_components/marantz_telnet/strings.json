@@ -1,0 +1,36 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Marantz / Denon receiver",
+        "description": "Enter the IP address of the receiver. Set Network Control to Always On on the receiver, and close any other app that uses its telnet port: it only accepts one connection at a time.",
+        "data": {
+          "host": "Host",
+          "port": "Port"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect, or the receiver did not answer. Check the address, that Network Control is Always On, and that nothing else is connected to port 23."
+    },
+    "abort": {
+      "already_configured": "This receiver is already configured."
+    }
+  },
+  "services": {
+    "send_command": {
+      "name": "Send command",
+      "description": "Send one or more raw telnet commands to the receiver, for example MVUP, SITV or PSDYNEQ ON.",
+      "fields": {
+        "command": {
+          "name": "Command",
+          "description": "Raw command (or list of commands), without the trailing carriage return."
+        },
+        "config_entry_id": {
+          "name": "Receiver",
+          "description": "Only send to this receiver (defaults to all)."
+        }
+      }
+    }
+  }
+}
