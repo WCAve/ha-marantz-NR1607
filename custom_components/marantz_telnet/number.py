@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .client import AVRClient
-from .controls import NUMBERS, NumberDesc, channel_number
+from .controls import DEFAULT_CONTROLS, NUMBERS, NumberDesc, channel_number
 from .entity import AVREntity, setup_dynamic
 
 _BY_KEY = {d.key: d for d in NUMBERS}
@@ -36,6 +36,7 @@ class AVRNumber(AVREntity, NumberEntity):
         self._desc = desc
         self._attr_name = desc.name
         self._attr_icon = desc.icon
+        self._attr_entity_registry_enabled_default = desc.uid in DEFAULT_CONTROLS
         self._attr_native_min_value = desc.minimum
         self._attr_native_max_value = desc.maximum
         self._attr_native_step = desc.step

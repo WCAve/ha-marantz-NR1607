@@ -11,7 +11,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .client import AVRClient
-from .controls import SWITCHES, SwitchDesc
+from .controls import DEFAULT_CONTROLS, SWITCHES, SwitchDesc
 from .entity import AVREntity, setup_dynamic
 
 _BY_KEY = {d.key: d for d in SWITCHES}
@@ -35,6 +35,7 @@ class AVRSwitch(AVREntity, SwitchEntity):
         self._desc = desc
         self._attr_name = desc.name
         self._attr_icon = desc.icon
+        self._attr_entity_registry_enabled_default = desc.uid in DEFAULT_CONTROLS
 
     @property
     def is_on(self) -> bool | None:

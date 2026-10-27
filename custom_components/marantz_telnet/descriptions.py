@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Any
 
 from .const import CHANNEL_NAMES, SOURCE_NAMES, SPEAKER_GROUPS
@@ -220,6 +220,21 @@ _add(
 )
 
 
+# Sensors enabled when the integration is added; everything else is created
+# disabled and can be enabled per entity in Home Assistant.
+DEFAULT_SENSORS = {
+    "input",
+    "sound_mode",
+    "volume_db",
+    "audio_input_mode",
+    "sample_rate",
+    "channel_format",
+    "input_resolution",
+    "display",
+    "firmware",
+}
+
+
 def describe(key: str) -> list[SensorDesc]:
     """Return the sensors to create for a protocol key."""
     descs = list(STATIC.get(key, []))
@@ -253,4 +268,4 @@ def describe(key: str) -> list[SensorDesc]:
         else:
             slug = "".join(c if c.isalnum() else "_" for c in key.lower())
             descs.append(D(f"raw_{slug}", key, f"Raw {key}", diagnostic=True, enabled=False))
-    return descs
+    return [replace(d, enabled=d.uid in DEFAULT_SENSORS) for d in descs]

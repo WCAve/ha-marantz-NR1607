@@ -42,6 +42,12 @@ class NumberDesc:
     icon: str | None = None
 
 
+# Controls enabled when the integration is added; the rest start disabled.
+DEFAULT_CONTROLS = {
+    "multeq", "dynamic_volume", "dynamic_eq", "cinema_eq", "tone_control",
+    "bass", "treble", "dialog_level", "subwoofer_level", "sleep", "dimmer", "eco",
+}
+
 SELECTS = [
     SelectDesc("eco", "ECO", "ECO mode", {"ON": "On", "AUTO": "Auto", "OFF": "Off"}, "ECO{v}", "mdi:leaf"),
     SelectDesc("dimmer", "DIM", "Display dimmer",

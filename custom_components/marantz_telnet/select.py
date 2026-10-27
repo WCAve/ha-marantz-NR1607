@@ -9,7 +9,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .client import AVRClient
-from .controls import SELECTS, SelectDesc
+from .controls import DEFAULT_CONTROLS, SELECTS, SelectDesc
 from .entity import AVREntity, setup_dynamic
 
 _BY_KEY: dict[str, list[SelectDesc]] = {}
@@ -35,6 +35,7 @@ class AVRSelect(AVREntity, SelectEntity):
         self._desc = desc
         self._attr_name = desc.name
         self._attr_icon = desc.icon
+        self._attr_entity_registry_enabled_default = desc.uid in DEFAULT_CONTROLS
         self._attr_options = list(desc.options.values())
 
     @property

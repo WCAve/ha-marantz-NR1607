@@ -34,6 +34,13 @@ level adjust, Neural:X, graphic/headphone EQ, trigger 1…), numbers (bass, treb
 LFE, dialog level, subwoofer level, audio delay, sleep timers, tuner preset,
 every channel level). Controls only appear for settings the receiver reports.
 
+**Enabled by default** (everything else is created disabled; enable it under
+Settings → Devices & services → the receiver → *entities not shown*):
+sensors Input, Sound mode, Volume (dB), Audio input mode, Audio sample rate,
+Audio channel format, Input video resolution, Display, Firmware; controls MultEQ,
+Dynamic Volume, Dynamic EQ, Cinema EQ, Tone control, Bass, Treble, Dialog level,
+Subwoofer level, Sleep timer, Display dimmer, ECO mode; plus both media players.
+
 **Service** `marantz_telnet.send_command`: send any raw command (or a list),
 e.g. `PSDYNEQ ON`, `MSMOVIE`, `TPAN05`.
 
